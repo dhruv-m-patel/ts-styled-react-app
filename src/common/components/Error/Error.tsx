@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -8,11 +7,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Error({ message }) {
+interface ErrorComponentProps {
+  message: string;
+}
+
+export default function Error({ message }: ErrorComponentProps) {
   const classes = useStyles();
   return <Typography className={classes.error}>{message}</Typography>;
 }
-
-Error.propTypes = {
-  message: PropTypes.string.isRequired,
-};

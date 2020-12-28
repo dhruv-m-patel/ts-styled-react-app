@@ -1,3 +1,4 @@
+import { ReducerAction, TestReducerStateType } from './index';
 import { Actions } from '../actions';
 
 export const defaultState = {
@@ -7,8 +8,8 @@ export const defaultState = {
 };
 
 export default function testReducer(
-  state = defaultState,
-  action = { type: undefined }
+  state: TestReducerStateType = defaultState,
+  action: ReducerAction = { type: undefined }
 ) {
   const { payload } = action;
   switch (action.type) {

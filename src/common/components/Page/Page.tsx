@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import store from 'store';
 import { CssBaseline, Container } from '@material-ui/core';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -11,8 +10,20 @@ const DEFAULT_HELMET_TITLE = 'styled-react-app';
 const DEFAULT_HELMET_DESCRIPTION =
   'A universal react app with styled-components and redux support';
 
-export default function Page({ title, description, children }) {
-  const [hasSwitchedToDarkMode, setHasSwitchedToDarkMode] = useState(undefined);
+interface PageComponentProps {
+  title?: string;
+  description?: string;
+  children: React.ReactNode;
+}
+
+export default function Page({
+  title,
+  description,
+  children,
+}: PageComponentProps) {
+  const [hasSwitchedToDarkMode, setHasSwitchedToDarkMode] = useState<boolean>(
+    false
+  );
 
   const switchToDarkMode = useCallback(() => {
     setHasSwitchedToDarkMode(!hasSwitchedToDarkMode);
@@ -67,15 +78,3 @@ export default function Page({ title, description, children }) {
     </PageContext.Provider>
   );
 }
-
-Page.propTypes = {
-  children: PropTypes.node,
-  title: PropTypes.string,
-  description: PropTypes.string,
-};
-
-Page.defaultProps = {
-  title: undefined,
-  description: undefined,
-  children: undefined,
-};

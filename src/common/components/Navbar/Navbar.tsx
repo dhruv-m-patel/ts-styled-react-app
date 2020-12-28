@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   AppBar,
   Toolbar,
@@ -21,10 +20,15 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+interface NavbarComponentProps {
+  hasSwitchedToDarkMode: boolean;
+  onDarkModeTriggerClick: Function;
+}
+
 export default function Navbar({
-  hasSwitchedToDarkMode,
+  hasSwitchedToDarkMode = false,
   onDarkModeTriggerClick,
-}) {
+}: NavbarComponentProps) {
   const classes = useStyles();
 
   return (
@@ -41,13 +45,3 @@ export default function Navbar({
     </AppBar>
   );
 }
-
-Navbar.propTypes = {
-  hasSwitchedToDarkMode: PropTypes.bool,
-  onDarkModeTriggerClick: PropTypes.func,
-};
-
-Navbar.defaultProps = {
-  hasSwitchedToDarkMode: false,
-  onDarkModeTriggerClick: () => {},
-};

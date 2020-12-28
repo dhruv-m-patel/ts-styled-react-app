@@ -1,16 +1,22 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { List, ListItem, Typography, Link } from '@material-ui/core';
 import Loader from '../Loader';
 import Error from '../Error';
 import Page from '../Page';
+
+interface ReduxExampleComponentProps {
+  isFetching: boolean;
+  error?: string;
+  data?: Array<string>;
+  fetchTestData: Function;
+}
 
 export default function ReduxExample({
   isFetching,
   error,
   data,
   fetchTestData,
-}) {
+}: ReduxExampleComponentProps) {
   useEffect(() => {
     if (!isFetching && !error && (!data || !data.length)) {
       fetchTestData();
@@ -40,17 +46,3 @@ export default function ReduxExample({
     </Page>
   );
 }
-
-ReduxExample.propTypes = {
-  isFetching: PropTypes.bool,
-  error: PropTypes.string,
-  data: PropTypes.arrayOf(PropTypes.string),
-  fetchTestData: PropTypes.func,
-};
-
-ReduxExample.defaultProps = {
-  isFetching: false,
-  error: undefined,
-  data: undefined,
-  fetchTestData: () => {},
-};

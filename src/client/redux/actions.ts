@@ -8,9 +8,22 @@ export const Actions = {
   },
 };
 
-export function generateRequest({ body, ...options }) {
+export interface RsaaRequestBody {
+  endpoint: string;
+  body?: any;
+  method?: 'GET' | 'PUT' | 'PATCH' | 'POST' | 'DELETE' | 'HEAD';
+  types?: Array<string> | Array<{ type: string; meta: any }>;
+  type?: string;
+}
+
+export function generateRequest({
+  body,
+  endpoint,
+  ...options
+}: RsaaRequestBody) {
   return {
     [RSAA]: {
+      endpoint,
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

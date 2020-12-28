@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   Box,
   CircularProgress,
@@ -14,7 +13,18 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function Loader({ message, children, className, ...props }) {
+interface LoaderComponentProps {
+  message: string;
+  children?: React.ReactNode;
+  className: string;
+}
+
+export default function Loader({
+  message,
+  children,
+  className,
+  ...props
+}: LoaderComponentProps) {
   const classes = useStyles();
 
   return (
@@ -25,15 +35,3 @@ export default function Loader({ message, children, className, ...props }) {
     </Box>
   );
 }
-
-Loader.propTypes = {
-  message: PropTypes.string,
-  className: PropTypes.string,
-  children: PropTypes.node,
-};
-
-Loader.defaultProps = {
-  message: undefined,
-  className: undefined,
-  children: undefined,
-};

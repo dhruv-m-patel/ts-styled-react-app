@@ -8,11 +8,13 @@ export default function renderApp() {
   const supportsHistory = 'pushState' in window.history;
 
   let preloadedState;
-  if (typeof window !== 'undefined' && window.__PRELOADED_STATE__) {
-    preloadedState = window.__PRELOADED_STATE__;
-    const stateData = document.getElementById('stateData');
+  if (typeof window !== 'undefined' && window['__PRELOADED_STATE__']) {
+    preloadedState = window['__PRELOADED_STATE__'] || {};
+    const stateData: HTMLElement = document.getElementById(
+      'stateData'
+    ) as HTMLElement;
     document.head.removeChild(stateData);
-    delete window.__PRELOADED_STATE__;
+    delete window['__PRELOADED_STATE__'];
   }
 
   ReactDOM.hydrate(

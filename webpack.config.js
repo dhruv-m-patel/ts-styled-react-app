@@ -39,10 +39,7 @@ module.exports = {
       {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        options: {
-          envName: 'webpack',
-        },
+        loader: 'ts-loader',
       },
     ],
   },
