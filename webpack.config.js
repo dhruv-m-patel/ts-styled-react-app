@@ -23,10 +23,10 @@ module.exports = {
   mode: process.env.NODE_ENV || 'production',
   entry: {
     client: !isDevelopment
-      ? path.resolve(__dirname, 'src/client/index.js')
+      ? path.resolve(__dirname, 'src/client/index.ts')
       : [
           'webpack-hot-middleware/client?reload=true',
-          path.resolve(__dirname, 'src/client/index.js'),
+          path.resolve(__dirname, 'src/client/index.ts'),
         ],
   },
   output: {
@@ -37,7 +37,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
@@ -71,7 +71,7 @@ module.exports = {
     }),
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.ts', '.tsx', '.json'],
   },
   devtool: isProduction ? 'cheap-source-map' : false,
   performance: {

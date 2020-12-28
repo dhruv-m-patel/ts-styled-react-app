@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { makeStyles, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-  error: theme.palette.error.main,
+  error: {
+    color: theme.palette.error.main,
+  },
 }));
 
 export default function Error({ message }) {
