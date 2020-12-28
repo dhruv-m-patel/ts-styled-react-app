@@ -1,0 +1,21 @@
+name: build
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Install packages
+        run: npm install
+      - name: Verify code formatting
+        run: npx prettier --check .
+      - name: Lint Code
+        run: npm run lint
+      - name: Build app
+        run: npm run build
+      - name: Run tests
+        run: npm test
