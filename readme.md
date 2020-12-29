@@ -15,7 +15,7 @@ $ npm run start-dev ## Or you can also run "npm run build && npm start"
 
 ## Integrations
 
-- Universal react app built with `express`, `react`, `redux`, `babel`, `webpack` with hot reloading and code-splitting support (and Dark Mode 🎉)
+- Universal react app built with `express`, `react`, `redux`, `typescript`, `webpack` with hot reloading and code-splitting support (and Dark Mode 🎉)
 - Style is a breeze with `styled-components`
 - Tests are written with `jest` and `enzyme`
 - `Storybook` is used to write component stories

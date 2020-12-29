@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import Server from './Server';
 
 dotenv.config();
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 global.Promise = require('bluebird').Promise;
 
 const server = new Server();

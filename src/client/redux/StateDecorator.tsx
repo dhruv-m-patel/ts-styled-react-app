@@ -4,7 +4,7 @@ import configureStore from './configureStore';
 
 interface StateDecoratorProps {
   initialState?: any;
-  children?: JSX.Element;
+  children?: React.ReactNode;
 }
 
 export default function StateDecorator({

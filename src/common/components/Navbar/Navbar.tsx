@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import {
   AppBar,
   Toolbar,
   Typography,
   Button,
   makeStyles,
+  Theme,
 } from '@material-ui/core';
 import { AcUnitRounded, BrightnessHigh, Brightness4 } from '@material-ui/icons';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: Theme) => ({
   appToolBar: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -18,11 +19,14 @@ const useStyles = makeStyles(() => ({
       fontWeight: '400',
     },
   },
+  themeSwitcherButton: {
+    color: theme.palette.common.white,
+  },
 }));
 
 interface NavbarComponentProps {
   hasSwitchedToDarkMode: boolean;
-  onDarkModeTriggerClick: Function;
+  onDarkModeTriggerClick: (event: MouseEvent<HTMLElement>) => void;
 }
 
 export default function Navbar({
@@ -36,9 +40,13 @@ export default function Navbar({
       <Toolbar className={classes.appToolBar}>
         <Typography variant="h1">
           <AcUnitRounded />
-          &nbsp; Styled React App
+          &nbsp; Typescript Styled React App
         </Typography>
-        <Button variant="text" onClick={onDarkModeTriggerClick}>
+        <Button
+          variant="text"
+          className={classes.themeSwitcherButton}
+          onClick={onDarkModeTriggerClick}
+        >
           {hasSwitchedToDarkMode ? <BrightnessHigh /> : <Brightness4 />}
         </Button>
       </Toolbar>

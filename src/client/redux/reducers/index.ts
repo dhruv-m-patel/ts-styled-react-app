@@ -1,20 +1,17 @@
 import { combineReducers } from 'redux';
 import testReducer from './test-reducer';
 
-export interface ReducerAction {
+export interface TypeAndPayload<PayloadType> {
   type?: string;
-  payload?: any;
+  payload?: PayloadType;
 }
 
 export interface TestReducerStateType {
-  isFetching: Boolean;
+  isFetching: boolean;
   error?: string;
-  data?: Array<any>;
-}
-interface RootReducerType {
-  test: TestReducerStateType;
+  data?: Array<string>;
 }
 
-export default combineReducers<RootReducerType>({
+export default combineReducers({
   test: testReducer,
 });

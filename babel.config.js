@@ -6,17 +6,13 @@ module.exports = {
     '@babel/syntax-optional-chaining',
     '@babel/transform-react-inline-elements',
     '@babel/syntax-dynamic-import',
+    '@babel/transform-typescript',
     '@loadable/babel-plugin',
     'babel-plugin-macros',
   ],
   presets: [
-    [
-      '@babel/preset-env',
-      {
-        targets: { node: 'current' },
-        exclude: ['transform-regenerator'],
-      },
-    ],
+    '@babel/preset-env',
     '@babel/preset-react',
+    '@babel/preset-typescript',
   ],
 };

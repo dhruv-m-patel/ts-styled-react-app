@@ -12,7 +12,7 @@ export default function HomePage() {
         <ListItem>Styled Components</ListItem>
         <ListItem>React Router</ListItem>
         <ListItem>Webpack v4 with Hot Reloading</ListItem>
-        <ListItem>Babel v7</ListItem>
+        <ListItem>Typescript</ListItem>
         <ListItem>Express v4</ListItem>
         <ListItem>
           Configuration (using&nbsp;

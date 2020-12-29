@@ -3,20 +3,14 @@ import { List, ListItem, Typography, Link } from '@material-ui/core';
 import Loader from '../Loader';
 import Error from '../Error';
 import Page from '../Page';
-
-interface ReduxExampleComponentProps {
-  isFetching: boolean;
-  error?: string;
-  data?: Array<string>;
-  fetchTestData: Function;
-}
+import { ConnectedComponentProps } from './index';
 
 export default function ReduxExample({
   isFetching,
   error,
   data,
   fetchTestData,
-}: ReduxExampleComponentProps) {
+}: ConnectedComponentProps & {}) {
   useEffect(() => {
     if (!isFetching && !error && (!data || !data.length)) {
       fetchTestData();

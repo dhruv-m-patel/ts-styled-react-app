@@ -37,7 +37,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(ts|tsx)$/,
+        test: /\.tsx?$/,
         exclude: /node_modules/,
         loader: 'ts-loader',
       },
@@ -68,7 +68,7 @@ module.exports = {
     }),
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.json'],
+    extensions: ['.ts', '.tsx', '.js', '.json'],
   },
   devtool: isProduction ? 'cheap-source-map' : false,
   performance: {

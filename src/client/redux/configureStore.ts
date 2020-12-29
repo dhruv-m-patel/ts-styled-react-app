@@ -6,7 +6,7 @@ export default function configureStore(preloadedState: any) {
   let composeEnhancers = compose;
   if (typeof window !== 'undefined') {
     composeEnhancers =
-      window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] || compose;
+      (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   }
 
   return createStore(

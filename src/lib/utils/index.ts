@@ -1,8 +1,8 @@
 import handlers from 'shortstop-handlers';
 
-export function betterRequire(basePath) {
+export function betterRequire(basePath: string) {
   const baseRequire = handlers.require(basePath);
-  return function hashRequire(v) {
+  return function hashRequire(v: any) {
     const [moduleName, func] = v.split('#');
     const module = baseRequire(moduleName);
     if (func) {
@@ -15,9 +15,9 @@ export function betterRequire(basePath) {
   };
 }
 
-export function readConfiguration(configFactory) {
+export function readConfiguration(configFactory: any) {
   return new Promise((resolve, reject) => {
-    configFactory.create((err, config) => {
+    configFactory.create((err: Error, config: any) => {
       if (err) {
         reject(err);
         return;
@@ -27,7 +27,7 @@ export function readConfiguration(configFactory) {
   });
 }
 
-export function preloadDefaultState(req) {
+export function preloadDefaultState(req: any) {
   if (!req.initialState) {
     req.initialState = {};
   }

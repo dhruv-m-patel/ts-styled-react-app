@@ -13,7 +13,7 @@ const DEFAULT_HELMET_DESCRIPTION =
 interface PageComponentProps {
   title?: string;
   description?: string;
-  children: React.ReactNode;
+  children: Array<React.ReactNode>;
 }
 
 export default function Page({
