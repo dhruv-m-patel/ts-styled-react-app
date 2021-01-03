@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import store from 'store';
 import { CssBaseline, Container } from '@material-ui/core';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -9,10 +8,22 @@ import PageContext from '../../context/PageContext';
 
 const DEFAULT_HELMET_TITLE = 'styled-react-app';
 const DEFAULT_HELMET_DESCRIPTION =
-  'A universal react app with styled-components and redux support';
+  'A universal react app with typescript, material-ui and redux support';
 
-export default function Page({ title, description, children }) {
-  const [hasSwitchedToDarkMode, setHasSwitchedToDarkMode] = useState(undefined);
+interface PageComponentProps {
+  title?: string;
+  description?: string;
+  children?: any;
+}
+
+export default function Page({
+  title = DEFAULT_HELMET_TITLE,
+  description = DEFAULT_HELMET_DESCRIPTION,
+  children,
+}: PageComponentProps) {
+  const [hasSwitchedToDarkMode, setHasSwitchedToDarkMode] = useState<boolean>(
+    false
+  );
 
   const switchToDarkMode = useCallback(() => {
     setHasSwitchedToDarkMode(!hasSwitchedToDarkMode);
@@ -50,11 +61,8 @@ export default function Page({ title, description, children }) {
         <CssBaseline />
         <HelmetProvider>
           <Helmet>
-            <title>{title || DEFAULT_HELMET_TITLE}</title>
-            <meta
-              name="description"
-              content={description || DEFAULT_HELMET_DESCRIPTION}
-            />
+            <title>{title}</title>
+            <meta name="description" content={description} />
           </Helmet>
           <Navbar
             onDarkModeTriggerClick={switchToDarkMode}
@@ -67,15 +75,3 @@ export default function Page({ title, description, children }) {
     </PageContext.Provider>
   );
 }
-
-Page.propTypes = {
-  children: PropTypes.node,
-  title: PropTypes.string,
-  description: PropTypes.string,
-};
-
-Page.defaultProps = {
-  title: undefined,
-  description: undefined,
-  children: undefined,
-};

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Request, Response } from 'express';
 import ReactDOMServer from 'react-dom/server';
 import path from 'path';
 import { StaticRouter } from 'react-router-dom';
@@ -8,17 +9,19 @@ import Router from '../../common/router';
 import ReduxStateDecorator from '../../client/redux/StateDecorator';
 
 export default function () {
-  return function renderPage(req, res) {
-    const context = {};
+  return function renderPage(req: Request, res: Response) {
+    const context: { url?: string } = {};
     if (context.url) {
       res.redirect(context.url);
       return;
     }
 
-    const store = configureStore(req.initialState || {});
-    const preloadedState = req.initialState || store.getState();
-    if (!req.initialState) {
-      req.initialState = preloadedState;
+    const request = req as any;
+
+    const store = configureStore(request.initialState || {});
+    const preloadedState = request.initialState || store.getState();
+    if (!request.initialState) {
+      request.initialState = preloadedState;
     }
 
     const html = ReactDOMServer.renderToString(
@@ -46,7 +49,7 @@ export default function () {
           <meta charset="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" priority="1" />
           <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-          <title>${req.config.get('title')}</title>
+          <title>${request.config.get('title')}</title>
           ${extractor.getLinkTags()}
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
           <script id="stateData">window.__PRELOADED_STATE__ = ${JSON.stringify(

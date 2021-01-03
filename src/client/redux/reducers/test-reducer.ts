@@ -1,14 +1,15 @@
+import { TypeAndPayload, TestReducerStateType } from './index';
 import { Actions } from '../actions';
 
-export const defaultState = {
+export const defaultState: TestReducerStateType = {
   isFetching: false,
   error: undefined,
   data: [],
 };
 
 export default function testReducer(
-  state = defaultState,
-  action = { type: undefined }
+  state: TestReducerStateType = defaultState,
+  action: TypeAndPayload<Array<string>> = { type: undefined }
 ) {
   const { payload } = action;
   switch (action.type) {

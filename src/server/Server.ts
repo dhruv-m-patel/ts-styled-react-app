@@ -1,6 +1,9 @@
 import path from 'path';
 import http from 'http';
 import confit from 'confit';
+// eslint-disable-next-line import/no-duplicates
+import { Application, Request, Response, NextFunction } from 'express';
+// eslint-disable-next-line import/no-duplicates
 import express from 'express';
 import meddleware from 'meddleware';
 import handlers from 'shortstop-handlers';
@@ -8,16 +11,22 @@ import shortstopRegex from 'shortstop-regex';
 import 'fetch-everywhere';
 import { readConfiguration, betterRequire } from '../lib/utils';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 export default class Server {
+  app: Application;
+  server: http.Server;
+  config: any;
+
   constructor() {
     this.app = express();
     this.server = http.createServer(this.app);
   }
 
-  configurations = [];
+  configurations: Array<any> = [];
 
   async addConfigurationOverrides() {
-    let lastConfig;
+    let lastConfig: any;
     for (const config of this.configurations.reverse()) {
       if (lastConfig) {
         config.addOverride(lastConfig._store);
@@ -27,13 +36,13 @@ export default class Server {
     return lastConfig;
   }
 
-  addDefaultConfiguration(rootDirectory) {
+  addDefaultConfiguration(rootDirectory: string) {
     const configFactory = confit({
       basedir: path.join(rootDirectory, 'config'),
       protocols: {
         root: handlers.path(rootDirectory),
         path: handlers.path(
-          ['development', 'test'].includes(process.env.NODE_ENV)
+          ['development', 'test'].includes(process.env.NODE_ENV || '')
             ? path.join(rootDirectory, 'src')
             : path.join(rootDirectory, 'build')
         ),
@@ -48,7 +57,7 @@ export default class Server {
   async start() {
     this.addDefaultConfiguration(process.cwd());
 
-    const config = await this.addConfigurationOverrides();
+    const config: any = await this.addConfigurationOverrides();
 
     this.config = config;
 
@@ -59,21 +68,26 @@ export default class Server {
       this.app.enable('trust proxy');
     }
 
-    this.app.use((req, res, next) => {
-      req.config = config;
+    this.app.use((req: Request, res: Response, next: NextFunction) => {
+      // eslint-disable-next-line dot-notation
+      (req as any).config = config;
       next();
     });
 
     // NOTE: configure using webpack-dev-middleware and webpack-hot-middleware earlier than other middlewares
     // for hot- reloading to work. Changing order may not guarantee live browser refresh.
     if (process.env.NODE_ENV === 'development') {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
       const webpack = require('webpack');
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
       const compiler = webpack(require('../../webpack.config.js'));
       this.app.use(
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
         require('webpack-dev-middleware')(compiler, {
           stats: { colors: true },
         })
       );
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
       this.app.use(require('webpack-hot-middleware')(compiler));
     }
 
@@ -82,8 +96,10 @@ export default class Server {
       this.app.use(meddleware(middleware));
     }
 
-    return new Promise((resolve, reject) => {
-      const port = ['staging', 'production'].includes(process.env.NODE_ENV)
+    return new Promise((resolve) => {
+      const port = ['staging', 'production'].includes(
+        process.env.NODE_ENV || ''
+      )
         ? process.env.PORT
         : config.get('port');
       this.server.listen(port, () => {
@@ -92,7 +108,9 @@ export default class Server {
     });
   }
 
-  stop(callback) {
+  stop(callback: any) {
     this.server.close(callback);
   }
 }
+
+/* eslint-enable @typescript-eslint/no-explicit-any */

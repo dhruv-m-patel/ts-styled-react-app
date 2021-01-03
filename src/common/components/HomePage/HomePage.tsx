@@ -5,14 +5,14 @@ import Page from '../Page';
 export default function HomePage() {
   return (
     <Page>
-      <Typography variant="h5">This starter-kit was built with:</Typography>
+      <Typography variant="h5">This boilerplate app is built with:</Typography>
       <List>
         <ListItem>React v16.8</ListItem>
         <ListItem>Redux</ListItem>
-        <ListItem>Styled Components</ListItem>
+        <ListItem>Typescript</ListItem>
+        <ListItem>Material UI</ListItem>
         <ListItem>React Router</ListItem>
         <ListItem>Webpack v4 with Hot Reloading</ListItem>
-        <ListItem>Babel v7</ListItem>
         <ListItem>Express v4</ListItem>
         <ListItem>
           Configuration (using&nbsp;

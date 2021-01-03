@@ -4,15 +4,16 @@ import { BrowserRouter } from 'react-router-dom';
 import Router from '../common/router';
 import ReduxStateDecorator from './redux/StateDecorator';
 
-export default function renderApp() {
+export default function RenderApp() {
   const supportsHistory = 'pushState' in window.history;
+  const RootElement = document.getElementById('root') as HTMLElement;
 
   let preloadedState;
-  if (typeof window !== 'undefined' && window.__PRELOADED_STATE__) {
-    preloadedState = window.__PRELOADED_STATE__;
-    const stateData = document.getElementById('stateData');
+  if (typeof window !== 'undefined') {
+    preloadedState = (window as any).__PRELOADED_STATE__ || {};
+    const stateData = document.getElementById('stateData') as HTMLElement;
     document.head.removeChild(stateData);
-    delete window.__PRELOADED_STATE__;
+    delete (window as any).__PRELOADED_STATE__;
   }
 
   ReactDOM.hydrate(
@@ -21,6 +22,6 @@ export default function renderApp() {
         <Router />
       </ReduxStateDecorator>
     </BrowserRouter>,
-    document.getElementById('root')
+    RootElement
   );
 }
