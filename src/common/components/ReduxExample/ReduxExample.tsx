@@ -24,18 +24,20 @@ export default function ReduxExample({
       </Typography>
       <br />
       <br />
-      {isFetching && <Loader message="Fetching data" />}
-      {!!error && <Error message={error} />}
-      {data && data.length > 0 && (
-        <React.Fragment>
-          <Typography>Following data was fetched using Redux</Typography>
-          <List>
-            {data.map((item) => (
-              <ListItem key={item}>{item}</ListItem>
-            ))}
-          </List>
-        </React.Fragment>
-      )}
+      <React.Fragment>
+        {isFetching && <Loader message="Fetching data" />}
+        {!!error && <Error message={error} />}
+        {data && data.length > 0 && (
+          <React.Fragment>
+            <Typography>Following data was fetched using Redux</Typography>
+            <List>
+              {data.map((item) => (
+                <ListItem key={item}>{item}</ListItem>
+              ))}
+            </List>
+          </React.Fragment>
+        )}
+      </React.Fragment>
       <Link href="/">View Home Page</Link>
     </Page>
   );

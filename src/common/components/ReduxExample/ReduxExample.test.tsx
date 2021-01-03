@@ -7,7 +7,12 @@ describe('ReduxExample', () => {
   test('it should render loader when fetching data', () => {
     render(
       <MemoryRouter>
-        <ReduxExample isFetching fetchTestData={() => {}} />
+        <ReduxExample
+          isFetching
+          data={[]}
+          fetchTestData={() => {}}
+          error={undefined}
+        />
       </MemoryRouter>
     );
     expect(screen.queryByRole('progressbar')).toBeInTheDocument();
@@ -17,6 +22,9 @@ describe('ReduxExample', () => {
     render(
       <MemoryRouter>
         <ReduxExample
+          isFetching
+          fetchTestData={() => {}}
+          error={undefined}
           data={['John Doe', 'Jane Doe', 'Foo Bar', 'Bar Baz', 'Foo Baz']}
         />
       </MemoryRouter>
@@ -28,7 +36,12 @@ describe('ReduxExample', () => {
   test('it should render error', () => {
     render(
       <MemoryRouter>
-        <ReduxExample error="There was an error, please try later." />
+        <ReduxExample
+          isFetching
+          data={[]}
+          fetchTestData={() => {}}
+          error="There was an error, please try later."
+        />
       </MemoryRouter>
     );
     expect(

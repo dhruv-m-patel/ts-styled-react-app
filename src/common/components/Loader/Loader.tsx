@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 interface LoaderComponentProps {
-  message: string;
+  message?: string;
   children?: React.ReactNode;
   className?: string;
 }
