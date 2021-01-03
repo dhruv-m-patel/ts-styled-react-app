@@ -8,7 +8,7 @@ import PageContext from '../../context/PageContext';
 
 const DEFAULT_HELMET_TITLE = 'styled-react-app';
 const DEFAULT_HELMET_DESCRIPTION =
-  'A universal react app with styled-components and redux support';
+  'A universal react app with typescript, material-ui and redux support';
 
 interface PageComponentProps {
   title?: string;
@@ -17,8 +17,8 @@ interface PageComponentProps {
 }
 
 export default function Page({
-  title,
-  description,
+  title = DEFAULT_HELMET_TITLE,
+  description = DEFAULT_HELMET_DESCRIPTION,
   children,
 }: PageComponentProps) {
   const [hasSwitchedToDarkMode, setHasSwitchedToDarkMode] = useState<boolean>(
@@ -61,11 +61,8 @@ export default function Page({
         <CssBaseline />
         <HelmetProvider>
           <Helmet>
-            <title>{title || DEFAULT_HELMET_TITLE}</title>
-            <meta
-              name="description"
-              content={description || DEFAULT_HELMET_DESCRIPTION}
-            />
+            <title>{title}</title>
+            <meta name="description" content={description} />
           </Helmet>
           <Navbar
             onDarkModeTriggerClick={switchToDarkMode}

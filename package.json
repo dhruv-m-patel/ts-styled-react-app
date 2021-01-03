@@ -1,5 +1,5 @@
 {
-  "name": "styled-react-app",
+  "name": "ts-styled-react-app",
   "version": "1.0.0",
   "description": "A universal react app with styled-components and redux support",
   "main": "build/server/index.js",
@@ -23,11 +23,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dhruv-m-patel/styled-react-app.git"
+    "url": "git+https://github.com/dhruv-m-patel/ts-styled-react-app.git"
   },
   "author": "Dhruv Patel<dhruv.codelab@gmail.com",
   "license": "MIT",
-  "homepage": "https://github.com/dhruv-m-patel/styled-react-app#readme",
+  "homepage": "https://github.com/dhruv-m-patel/ts-styled-react-app#readme",
   "dependencies": {
     "@babel/runtime": "^7.12.5",
     "@loadable/component": "^5.14.1",
