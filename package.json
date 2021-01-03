@@ -4,7 +4,7 @@
   "description": "A universal react app with styled-components and redux support",
   "main": "build/server/index.js",
   "scripts": {
-    "build:server": "babel ./src --out-dir build --extensions \".ts,.tsx\" --ignore \"src/**/*.stories.js\",\"src/**/*.test.js\"",
+    "build:server": "babel ./src --out-dir build --extensions \".ts,.tsx\" --ignore \"src/**/*.stories.js\",\"src/**/*.test.tsx\"",
     "build:client": "BABEL_ENV=webpack webpack",
     "build": "npm run build:server && npm run build:client",
     "clean": "rimraf build && rimraf build-static",
