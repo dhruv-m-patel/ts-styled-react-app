@@ -1,3 +1,4 @@
+import { text } from 'body-parser';
 import React from 'react';
 import Loader from './Loader';
 
@@ -5,30 +6,21 @@ export default {
   title: 'Components/Loader',
   component: Loader,
   argTypes: {
-    message: {
-      control: { type: 'text' },
-    },
     children: {
       control: { type: null },
     },
+    color: {
+      control: { type: 'inline-radio', options: ['primary', 'secondary'] },
+    },
+    size: { control: { type: 'number' } },
+    thickness: { control: { type: 'number' } },
+    message: { control: { type: 'text' } },
+    value: { control: { type: 'number' } },
     variant: {
       control: {
         type: 'inline-radio',
-        options: [
-          'primary',
-          'secondary',
-          'success',
-          'danger',
-          'warning',
-          'info',
-        ],
+        options: ['determinate', 'indeterminate', 'static'],
       },
-    },
-    animation: {
-      control: { type: 'inline-radio', options: ['border', 'grow'] },
-    },
-    size: {
-      control: { type: 'inline-radio', options: { none: undefined, sm: 'sm' } },
     },
   },
 };
@@ -36,7 +28,7 @@ export default {
 export const Basic = (args) => <Loader {...args} />;
 
 Basic.args = {
-  size: undefined,
-  variant: 'secondary',
-  animation: 'border',
+  size: 30,
+  thickness: 3,
+  variant: 'indeterminate',
 };
