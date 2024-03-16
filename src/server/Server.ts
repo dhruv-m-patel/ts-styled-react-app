@@ -12,7 +12,6 @@ import 'fetch-everywhere';
 import { readConfiguration, betterRequire } from '../lib/utils';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 export default class Server {
   app: Application;
   server: http.Server;
@@ -29,8 +28,10 @@ export default class Server {
     let lastConfig: any;
     for (const config of this.configurations.reverse()) {
       if (lastConfig) {
+        // eslint-disable-next-line no-underscore-dangle
         config.addOverride(lastConfig._store);
       }
+      // eslint-disable-next-line no-await-in-loop
       lastConfig = await readConfiguration(config);
     }
     return lastConfig;
@@ -77,17 +78,17 @@ export default class Server {
     // NOTE: configure using webpack-dev-middleware and webpack-hot-middleware earlier than other middlewares
     // for hot- reloading to work. Changing order may not guarantee live browser refresh.
     if (process.env.NODE_ENV === 'development') {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
       const webpack = require('webpack');
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
       const compiler = webpack(require('../../webpack.config.js'));
       this.app.use(
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
         require('webpack-dev-middleware')(compiler, {
           stats: { colors: true },
         })
       );
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
       this.app.use(require('webpack-hot-middleware')(compiler));
     }
 

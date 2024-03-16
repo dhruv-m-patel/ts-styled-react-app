@@ -12,6 +12,8 @@
     "@typescript-eslint/no-shadow": "off",
     "@typescript-eslint/lines-between-class-members": "off",
     "no-restricted-syntax": "off",
-    "no-await-in-for-loop": "off"
+    "no-await-in-loop": "off",
+    "operator-linebreak": "off",
+    "no-underscore-dangle": "off"
   }
 }

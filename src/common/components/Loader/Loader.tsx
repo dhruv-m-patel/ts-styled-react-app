@@ -4,7 +4,6 @@ import {
   CircularProgress,
   Typography,
   makeStyles,
-  Theme,
 } from '@material-ui/core';
 import clsx from 'clsx';
 

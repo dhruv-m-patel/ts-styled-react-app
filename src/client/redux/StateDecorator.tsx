@@ -13,5 +13,6 @@ export default function StateDecorator({
 }: StateDecoratorProps) {
   const store = configureStore(initialState);
 
+  // @ts-ignore
   return <Provider store={store}>{children}</Provider>;
 }
