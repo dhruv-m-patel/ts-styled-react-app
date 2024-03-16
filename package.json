@@ -6,14 +6,14 @@
   "scripts": {
     "build:server": "babel ./src --out-dir build --extensions \".ts,.tsx\" --ignore \"src/**/*.stories.js\",\"src/**/*.test.tsx\"",
     "build:client": "BABEL_ENV=webpack webpack",
-    "build": "npm run build:server && npm run build:client",
+    "build": "yarn build:server && yarn build:client",
     "clean": "rimraf build && rimraf build-static",
     "start": "NODE_ENV=production node ./build/server/index.js",
     "start-dev": "babel-node --extensions \".ts,.tsx\" src/server/index.ts",
-    "start:watch": "npm run clean && npm run build && nodemon",
+    "start:watch": "yarn clean && yarn build && nodemon",
     "lint:ts": "eslint src/**/*.ts && eslint src/**/*.tsx",
     "lint:css": "stylelint \"./src/**/*.tsx\"",
-    "lint": "npm run lint:ts && npm run lint:css",
+    "lint": "yarn lint:ts && yarn lint:css",
     "prettier:verify": "prettier --check .",
     "pretest": "jest --clearCache",
     "test": "jest",
@@ -108,7 +108,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.3.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-standard": "^4.1.0",
     "husky": "^4.3.6",
     "jest": "^26.6.3",
@@ -135,5 +135,6 @@
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
-  }
+  },
+  "packageManager": "yarn@3.2.3"
 }
