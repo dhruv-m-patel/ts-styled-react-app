@@ -6,12 +6,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install Node.js and setup package manager
+        uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-      - run: yarn install --immutable
-      - run: yarn dlx prettier --check .
-      - run: yarn lint
-      - run: yarn build
-      - run: yarn test
+      - name: Install packages
+        run: yarn install --immutable
+      - name: Verify code formatting
+        run: yarn prettier:verify && yarn lint
+      - name: Build code
+        run: yarn build
+      - name: Run tests
+        run: yarn test

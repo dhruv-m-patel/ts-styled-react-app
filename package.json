@@ -14,6 +14,7 @@
     "lint:ts": "eslint src/**/*.ts && eslint src/**/*.tsx",
     "lint:css": "stylelint \"./src/**/*.tsx\"",
     "lint": "yarn lint:ts && yarn lint:css",
+    "prettier:format": "prettier --write .",
     "prettier:verify": "prettier --check .",
     "pretest": "jest --clearCache",
     "test": "jest",

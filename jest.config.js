@@ -7,7 +7,7 @@ module.exports = {
   globals: {
     NODE_ENV: 'test',
   },
-  setupFilesAfterEnv: ['src/setupTests.ts'],
+  setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'json'],
   moduleDirectories: ['node_modules'],
