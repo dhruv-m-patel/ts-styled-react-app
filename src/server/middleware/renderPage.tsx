@@ -1,6 +1,6 @@
 import React from 'react';
 import { Request, Response } from 'express';
-import ReactDOMServer from 'react-dom/server';
+import { renderToString } from 'react-dom/server';
 import path from 'path';
 import { StaticRouter } from 'react-router-dom';
 import { ChunkExtractor, ChunkExtractorManager } from '@loadable/server';
@@ -38,7 +38,8 @@ export default function render() {
       publicPath: '/',
     });
 
-    const html = ReactDOMServer.renderToString(
+    const html = renderToString(
+      // @ts-ignore
       <ChunkExtractorManager extractor={extractor}>
         <HelmetProvider context={helmetContext}>
           <ReduxStateDecorator initialState={preloadedState}>
