@@ -1,21 +1,22 @@
-name: build
+name: Lint, Build & Test
+
 on: [push]
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - name: Setup node
-        uses: actions/setup-node@v1
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install Node.js and setup package manager
+        uses: actions/setup-node@v4
         with:
-          node-version: '12.x'
+          node-version-file: .nvmrc
       - name: Install packages
-        run: npm install
+        run: yarn install --immutable
       - name: Verify code formatting
-        run: npx prettier --check .
-      - name: Lint Code
-        run: npm run lint
-      - name: Build app
-        run: npm run build
+        run: yarn prettier:verify && yarn lint
+      - name: Build code
+        run: yarn build
       - name: Run tests
-        run: npm test
+        run: yarn test

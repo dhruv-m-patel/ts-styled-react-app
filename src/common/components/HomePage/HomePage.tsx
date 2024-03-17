@@ -7,12 +7,12 @@ export default function HomePage() {
     <Page>
       <Typography variant="h5">This boilerplate app is built with:</Typography>
       <List>
-        <ListItem>React v16.8</ListItem>
+        <ListItem>React v18</ListItem>
         <ListItem>Redux</ListItem>
         <ListItem>Typescript</ListItem>
         <ListItem>Material UI</ListItem>
         <ListItem>React Router</ListItem>
-        <ListItem>Webpack v4 with Hot Reloading</ListItem>
+        <ListItem>Webpack v5 with Hot Reloading</ListItem>
         <ListItem>Express v4</ListItem>
         <ListItem>
           Configuration (using&nbsp;

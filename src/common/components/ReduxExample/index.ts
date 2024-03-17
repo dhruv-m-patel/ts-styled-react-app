@@ -1,7 +1,7 @@
 import { connect, ConnectedProps } from 'react-redux';
 import ReduxExample from './ReduxExample';
 import { fetchTestData } from '../../../client/redux/actions';
-import { TestReducerStateType } from '../../../client/redux/reducers';
+import { TestReducerStateType } from '../../../client/redux/reducers/types';
 
 function mapStateToProps({ test }: { test: TestReducerStateType }) {
   return {

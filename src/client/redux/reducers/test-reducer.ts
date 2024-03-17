@@ -1,4 +1,4 @@
-import { TypeAndPayload, TestReducerStateType } from './index';
+import { TypeAndPayload, TestReducerStateType } from './types';
 import { Actions } from '../actions';
 
 export const defaultState: TestReducerStateType = {

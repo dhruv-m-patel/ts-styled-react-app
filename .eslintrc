@@ -1,0 +1,19 @@
+{
+  "extends": [
+    "@dhruv-m-patel/eslint-config-react"
+  ],
+  "env": {
+    "jest": true,
+    "node": true,
+    "browser": true
+  },
+  "rules": {
+    "import/no-import-module-exports": "off",
+    "@typescript-eslint/no-shadow": "off",
+    "@typescript-eslint/lines-between-class-members": "off",
+    "no-restricted-syntax": "off",
+    "no-await-in-loop": "off",
+    "operator-linebreak": "off",
+    "no-underscore-dangle": "off"
+  }
+}

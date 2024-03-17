@@ -1,8 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import Router from '../common/router';
 import ReduxStateDecorator from './redux/StateDecorator';
+import { HelmetProvider } from 'react-helmet-async';
+import { hydrateRoot } from 'react-dom/client';
 
 export default function RenderApp() {
   const supportsHistory = 'pushState' in window.history;
@@ -10,18 +11,18 @@ export default function RenderApp() {
 
   let preloadedState;
   if (typeof window !== 'undefined') {
+    // eslint-disable-next-line no-underscore-dangle
     preloadedState = (window as any).__PRELOADED_STATE__ || {};
-    const stateData = document.getElementById('stateData') as HTMLElement;
-    document.head.removeChild(stateData);
-    delete (window as any).__PRELOADED_STATE__;
   }
 
-  ReactDOM.hydrate(
-    <BrowserRouter forceRefresh={!supportsHistory}>
-      <ReduxStateDecorator initialState={preloadedState}>
-        <Router />
-      </ReduxStateDecorator>
-    </BrowserRouter>,
-    RootElement
+  hydrateRoot(
+    RootElement,
+    <HelmetProvider>
+      <BrowserRouter forceRefresh={!supportsHistory}>
+        <ReduxStateDecorator initialState={preloadedState}>
+          <Router />
+        </ReduxStateDecorator>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }

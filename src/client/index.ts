@@ -2,15 +2,17 @@ import { loadableReady } from '@loadable/component';
 import renderApp from './renderApp';
 
 function render() {
-  renderApp();
-
-  if (process.env.NODE_ENV === 'development' && module.hot) {
-    module.hot.accept('./renderApp', () => {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const renderApp = require('./renderApp').default;
-      renderApp();
+  // @ts-ignore
+  if (process.env.NODE_ENV === 'development' && import.meta.webpackHot) {
+    // @ts-ignore
+    import.meta.webpackHot.accept('./renderApp', () => {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+      const processHMR = require('./renderApp').default;
+      processHMR();
     });
   }
+
+  return renderApp();
 }
 
 loadableReady(() => {

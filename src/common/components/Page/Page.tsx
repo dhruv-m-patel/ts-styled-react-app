@@ -21,9 +21,8 @@ export default function Page({
   description = DEFAULT_HELMET_DESCRIPTION,
   children,
 }: PageComponentProps) {
-  const [hasSwitchedToDarkMode, setHasSwitchedToDarkMode] = useState<boolean>(
-    false
-  );
+  const [hasSwitchedToDarkMode, setHasSwitchedToDarkMode] =
+    useState<boolean>(false);
 
   const switchToDarkMode = useCallback(() => {
     setHasSwitchedToDarkMode(!hasSwitchedToDarkMode);
@@ -59,7 +58,9 @@ export default function Page({
     <PageContext.Provider value={{ theme: currentThemeType }}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        {/* @ts-ignore */}
         <HelmetProvider>
+          {/* @ts-ignore */}
           <Helmet>
             <title>{title}</title>
             <meta name="description" content={description} />
