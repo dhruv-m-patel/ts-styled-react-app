@@ -13,10 +13,6 @@ export default function RenderApp() {
   if (typeof window !== 'undefined') {
     // eslint-disable-next-line no-underscore-dangle
     preloadedState = (window as any).__PRELOADED_STATE__ || {};
-    const stateData = document.getElementById('stateData') as HTMLElement;
-    document.head.removeChild(stateData);
-    // eslint-disable-next-line no-underscore-dangle
-    delete (window as any).__PRELOADED_STATE__;
   }
 
   hydrateRoot(

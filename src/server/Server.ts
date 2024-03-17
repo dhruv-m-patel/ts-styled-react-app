@@ -86,10 +86,19 @@ export default class Server {
         // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
         require('webpack-dev-middleware')(compiler, {
           stats: { colors: true },
+          serverSideRender: true,
         })
       );
-      // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-      this.app.use(require('webpack-hot-middleware')(compiler));
+      this.app.use(
+        // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+        require('webpack-hot-middleware')(compiler, {
+          path: '/__webpack_hmr',
+          heartbeat: 10 * 1000,
+          // @ts-ignore
+          dynamicPublicPath: true,
+          reload: true,
+        })
+      );
     }
 
     const middleware = config.get('meddleware');
