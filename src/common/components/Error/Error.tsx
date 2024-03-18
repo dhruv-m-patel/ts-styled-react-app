@@ -1,17 +1,20 @@
 import React from 'react';
-import { makeStyles, Typography } from '@material-ui/core';
-
-const useStyles = makeStyles((theme) => ({
-  error: {
-    color: theme.palette.error.main,
-  },
-}));
 
 interface ErrorComponentProps {
   message: string;
 }
 
 export default function Error({ message }: ErrorComponentProps) {
-  const classes = useStyles();
-  return <Typography className={classes.error}>{message}</Typography>;
+  return (
+    <div
+      style={{
+        color: 'red',
+        backgroundColor: '#ddd',
+        padding: '5px',
+        margin: '1rem',
+      }}
+    >
+      {message}
+    </div>
+  );
 }

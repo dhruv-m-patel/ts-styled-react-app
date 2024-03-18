@@ -6,7 +6,9 @@ describe('InternalServerError', () => {
   test('it should render', () => {
     render(<InternalServerError />);
 
-    expect(screen.queryByRole('heading')).toHaveTextContent('Oops!');
+    expect(screen.queryByRole('heading', { level: 2 })).toHaveTextContent(
+      'Oops!'
+    );
     expect(screen.queryByTestId('message')).toHaveTextContent(
       'Something went wrong. Please try again later.'
     );

@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react';
-import { List, ListItem, Typography, Link } from '@material-ui/core';
-import Loader from '../Loader';
 import Error from '../Error';
 import Page from '../Page';
 import { ConnectedComponentProps } from './index';
@@ -19,26 +17,22 @@ export default function ReduxExample({
 
   return (
     <Page>
-      <Typography variant="h4">
-        An example page showing Redux integration
-      </Typography>
-      <br />
-      <br />
+      <h2>An example page showing Redux integration</h2>
       <React.Fragment>
-        {isFetching && <Loader message="Fetching data" />}
+        {isFetching && <p>Fetching data...</p>}
         {!!error && <Error message={error} />}
         {data && data.length > 0 && (
           <React.Fragment>
-            <Typography>Following data was fetched using Redux</Typography>
-            <List>
+            <h3>Following data was fetched using Redux</h3>
+            <ul>
               {data.map((item) => (
-                <ListItem key={item}>{item}</ListItem>
+                <li key={item}>{item}</li>
               ))}
-            </List>
+            </ul>
           </React.Fragment>
         )}
       </React.Fragment>
-      <Link href="/">View Home Page</Link>
+      <a href="/">View Home Page</a>
     </Page>
   );
 }

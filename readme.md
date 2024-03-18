@@ -1,6 +1,6 @@
 # ts-styled-react-app
 
-A universal react app with Typescript, material-ui and redux support
+A universal react app with Typescript, React 18, Webpack 5 and redux support
 
 ![CI Status](https://github.com/dhruv-m-patel/ts-styled-react-app/workflows/build/badge.svg)
 
@@ -15,7 +15,7 @@ $ npm run start-dev ## Or you can also run "npm run build && npm start"
 
 ## Integrations
 
-- Universal react app built with `express`, `react`, `redux`, `typescript`, `material-ui`, `webpack`
+- Universal react app built with `Express`, `React 18`, `Redux`, `Typescript`, `Webpack 5`
 - Supports hot-reloading and code-splitting
 - Dark Mode Support 🎉
 - Tests are written with `jest` and `@testing-library/react`

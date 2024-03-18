@@ -15,7 +15,7 @@ describe('ReduxExample', () => {
         />
       </MemoryRouter>
     );
-    expect(screen.queryByRole('progressbar')).toBeInTheDocument();
+    expect(screen.queryByText('Fetching data...')).toBeInTheDocument();
   });
 
   test('it should render data', () => {
