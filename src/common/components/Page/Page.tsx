@@ -1,14 +1,12 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import store from 'store';
-import { CssBaseline, Container } from '@material-ui/core';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import Navbar from '../Navbar';
 import PageContext from '../../context/PageContext';
 
 const DEFAULT_HELMET_TITLE = 'styled-react-app';
 const DEFAULT_HELMET_DESCRIPTION =
-  'A universal react app with typescript, material-ui and redux support';
+  'A universal react app with Typescript, React 18, Webpack 5 and Redux support';
 
 interface PageComponentProps {
   title?: string;
@@ -48,31 +46,31 @@ export default function Page({
   }, [hasSwitchedToDarkMode]);
 
   const currentThemeType = hasSwitchedToDarkMode ? 'dark' : 'light';
-  const theme = createMuiTheme({
-    palette: {
-      type: currentThemeType,
-    },
-  });
 
   return (
     <PageContext.Provider value={{ theme: currentThemeType }}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        {/* @ts-ignore */}
-        <HelmetProvider>
-          {/* @ts-ignore */}
-          <Helmet>
-            <title>{title}</title>
-            <meta name="description" content={description} />
-          </Helmet>
+      <HelmetProvider>
+        <Helmet>
+          <title>{title}</title>
+          <meta name="description" content={description} />
+        </Helmet>
+        <div
+          style={{
+            backgroundColor: hasSwitchedToDarkMode ? '#333' : '#fff',
+            color: hasSwitchedToDarkMode ? '#fff' : '#333',
+            fontFamily: 'Arial, sans-serif',
+            fontSize: '16px',
+            margin: 0,
+            padding: 0,
+          }}
+        >
           <Navbar
             onDarkModeTriggerClick={switchToDarkMode}
             hasSwitchedToDarkMode={hasSwitchedToDarkMode}
           />
-          <br />
-          <Container maxWidth="lg">{children}</Container>
-        </HelmetProvider>
-      </ThemeProvider>
+          <div style={{ margin: '1rem', padding: '10px' }}>{children}</div>
+        </div>
+      </HelmetProvider>
     </PageContext.Provider>
   );
 }

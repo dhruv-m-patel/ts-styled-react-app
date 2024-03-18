@@ -1,43 +1,41 @@
 import React from 'react';
-import { Typography, List, ListItem, Link } from '@material-ui/core';
 import Page from '../Page';
 
 export default function HomePage() {
   return (
     <Page>
-      <Typography variant="h5">This boilerplate app is built with:</Typography>
-      <List>
-        <ListItem>React v18</ListItem>
-        <ListItem>Redux</ListItem>
-        <ListItem>Typescript</ListItem>
-        <ListItem>Material UI</ListItem>
-        <ListItem>React Router</ListItem>
-        <ListItem>Webpack v5 with Hot Reloading</ListItem>
-        <ListItem>Express v4</ListItem>
-        <ListItem>
+      <h3>This boilerplate app is built with:</h3>
+      <ul>
+        <li>React v18</li>
+        <li>Redux</li>
+        <li>Typescript</li>
+        <li>React Router</li>
+        <li>Webpack v5 with Hot Reloading</li>
+        <li>Express v4</li>
+        <li>
           Configuration (using&nbsp;
-          <Link href="https://www.npmjs.com/package/confit" target="blank">
+          <a href="https://www.npmjs.com/package/confit" target="blank">
             confit
-          </Link>
+          </a>
           &nbsp;/&nbsp;
-          <Link href="https://www.npmjs.com/package/meddleware" target="blank">
+          <a href="https://www.npmjs.com/package/meddleware" target="blank">
             meddleware
-          </Link>
+          </a>
           )
-        </ListItem>
-        <ListItem>
+        </li>
+        <li>
           Code splitting (using &nbsp;
-          <Link
+          <a
             href="https://loadable-components.com/docs/getting-started/"
             target="blank"
           >
             Loadable Components
-          </Link>
+          </a>
           )
-        </ListItem>
-        <ListItem>React Bootstrap</ListItem>
-      </List>
-      <Link href="/redux">View Example Page with Redux integration</Link>
+        </li>
+        <li>React Bootstrap</li>
+      </ul>
+      <a href="/redux">View Example Page with Redux integration</a>
     </Page>
   );
 }
