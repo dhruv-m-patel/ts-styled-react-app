@@ -1,11 +1,24 @@
 import dotenv from 'dotenv';
-import configureApp from './app';
+import { runApp } from '@dhruv-m-patel/web-app';
+import getWebApp from './app';
 
 dotenv.config();
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 global.Promise = require('bluebird').Promise;
 
-configureApp().then((port) => {
-  // eslint-disable-next-line no-console
-  console.log(`App has started on port ${port}`);
-});
+const port = Number(process.env.PORT) || 3000;
+
+getWebApp().then(
+  (app) =>
+    new Promise((resolve, reject) => {
+      runApp(app, {
+        appName: 'ts-styled-react-app',
+        port,
+        callback: () => {
+          resolve(app);
+        },
+      }).catch((err) => {
+        reject(err);
+      });
+    })
+);

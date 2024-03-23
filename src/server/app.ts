@@ -2,16 +2,12 @@ import path from 'path';
 import confit from 'confit';
 // eslint-disable-next-line import/no-duplicates
 import { Application, Request, Response, NextFunction } from 'express';
-// eslint-disable-next-line import/no-duplicates
-import express from 'express';
-import meddleware from 'meddleware';
 import handlers from 'shortstop-handlers';
 import shortstopRegex from 'shortstop-regex';
 import 'fetch-everywhere';
+import { configureApp } from '@dhruv-m-patel/web-app';
 import { readConfiguration, betterRequire } from '../lib/utils';
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
-const app: Application = express();
+import renderPage from './middleware/renderPage';
 
 const configurations: Array<any> = [];
 
@@ -46,61 +42,32 @@ function addDefaultConfiguration(rootDirectory: string) {
   configurations.push(configFactory);
 }
 
-export default async function configureApp() {
-  addDefaultConfiguration(process.cwd());
-  const config: any = await addConfigurationOverrides();
+export default async function useWebApp(): Promise<Application> {
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  const app = await configureApp({
+    paths: {
+      routes: path.join(__dirname, 'routes'),
+      staticDirectories: [
+        path.resolve(__dirname, '../../static'),
+        path.resolve(__dirname, '../../build-static'),
+      ],
+      webpackConfig: path.resolve(__dirname, '../../webpack.config.js'),
+    },
+    setup: async (webApp) => {
+      addDefaultConfiguration(process.cwd());
+      const config: any = await addConfigurationOverrides();
+      if (config.get('trustProxy')) {
+        webApp.enable('trust proxy');
+      }
 
-  // disable X-Powered-By header
-  app.disable('x-powered-by');
+      webApp.use((req: Request, res: Response, next: NextFunction) => {
+        webApp.locals.config = config;
+        req.app = webApp;
+        next();
+      });
 
-  if (config.get('trustProxy')) {
-    app.enable('trust proxy');
-  }
-
-  app.use((req: Request, res: Response, next: NextFunction) => {
-    // eslint-disable-next-line dot-notation
-    (req as any).config = config;
-    next();
+      webApp.use('*', renderPage());
+    },
   });
-
-  // NOTE: configure using webpack-dev-middleware and webpack-hot-middleware earlier than other middlewares
-  // for hot- reloading to work. Changing order may not guarantee live browser refresh.
-  if (process.env.NODE_ENV === 'development') {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    const webpack = require('webpack');
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    const compiler = webpack(require('../../webpack.config.js'));
-    app.use(
-      // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-      require('webpack-dev-middleware')(compiler, {
-        stats: { colors: true },
-        serverSideRender: true,
-      })
-    );
-    app.use(
-      // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-      require('webpack-hot-middleware')(compiler, {
-        path: '/__webpack_hmr',
-        heartbeat: 10 * 1000,
-        // @ts-ignore
-        dynamicPublicPath: true,
-        reload: true,
-      })
-    );
-  }
-
-  const middleware = config.get('meddleware');
-  if (middleware) {
-    app.use(meddleware(middleware));
-  }
-
-  return new Promise((resolve) => {
-    const port = ['staging', 'production'].includes(process.env.NODE_ENV || '')
-      ? process.env.PORT
-      : config.get('port');
-    app.listen(port, () => {
-      resolve(port);
-    });
-  });
+  return app;
 }
-/* eslint-enable @typescript-eslint/no-explicit-any */

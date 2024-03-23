@@ -60,7 +60,7 @@ export default function render() {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" priority="1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>${request.config.get('title')}</title>
+    <title>${request.app.locals.config.get('title')}</title>
     ${helmet.title.toString()}
     ${helmet.meta.toString()}
     ${helmet.link.toString()}
