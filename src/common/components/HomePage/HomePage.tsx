@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Page from '../Page';
 
 export default function HomePage() {
@@ -35,7 +36,7 @@ export default function HomePage() {
         </li>
         <li>React Bootstrap</li>
       </ul>
-      <a href="/redux">View Example Page with Redux integration</a>
+      <Link to="/redux">View Example Page with Redux integration</Link>
     </Page>
   );
 }

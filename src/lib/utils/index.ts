@@ -26,9 +26,3 @@ export function readConfiguration(configFactory: any) {
     });
   });
 }
-
-export function preloadDefaultState(req: any) {
-  if (!req.initialState) {
-    req.initialState = {};
-  }
-}

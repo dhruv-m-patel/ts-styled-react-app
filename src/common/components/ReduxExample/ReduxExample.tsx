@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Error from '../Error';
 import Page from '../Page';
 import { ConnectedComponentProps } from './index';
+import { Link } from 'react-router-dom';
 
 export default function ReduxExample({
   isFetching,
@@ -32,7 +33,7 @@ export default function ReduxExample({
           </React.Fragment>
         )}
       </React.Fragment>
-      <a href="/">View Home Page</a>
+      <Link to="/">View Home Page</Link>
     </Page>
   );
 }
