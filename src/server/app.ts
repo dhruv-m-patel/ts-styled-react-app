@@ -1,11 +1,14 @@
 import path from 'path';
 import confit from 'confit';
 // eslint-disable-next-line import/no-duplicates
-import { Application, Request, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
 import handlers from 'shortstop-handlers';
 import shortstopRegex from 'shortstop-regex';
-import 'fetch-everywhere';
-import { configureApp } from '@dhruv-m-patel/web-app';
+import {
+  configureApp,
+  WebApplication,
+  WebRequest,
+} from '@dhruv-m-patel/web-app';
 import { readConfiguration, betterRequire } from '../lib/utils';
 import renderPage from './middleware/renderPage';
 
@@ -42,7 +45,7 @@ function addDefaultConfiguration(rootDirectory: string) {
   configurations.push(configFactory);
 }
 
-export default async function useWebApp(): Promise<Application> {
+export default async function useWebApp(): Promise<WebApplication> {
   /* eslint-disable @typescript-eslint/no-explicit-any */
   const app = await configureApp({
     paths: {
@@ -53,14 +56,14 @@ export default async function useWebApp(): Promise<Application> {
       ],
       webpackConfig: path.resolve(__dirname, '../../webpack.config.js'),
     },
-    setup: async (webApp) => {
+    setup: async (webApp: WebApplication) => {
       addDefaultConfiguration(process.cwd());
       const config: any = await addConfigurationOverrides();
       if (config.get('trustProxy')) {
         webApp.enable('trust proxy');
       }
 
-      webApp.use((req: Request, res: Response, next: NextFunction) => {
+      webApp.use((req: WebRequest, res: Response, next: NextFunction) => {
         webApp.locals.config = config;
         req.app = webApp;
         next();
