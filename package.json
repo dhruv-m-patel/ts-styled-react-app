@@ -31,6 +31,7 @@
   "homepage": "https://github.com/dhruv-m-patel/ts-styled-react-app#readme",
   "dependencies": {
     "@babel/runtime": "^7.24.0",
+    "@dhruv-m-patel/web-app": "^1.7.0",
     "@loadable/component": "^5.16.3",
     "@loadable/server": "^5.16.2",
     "bluebird": "^3.7.2",
