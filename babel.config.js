@@ -9,6 +9,7 @@ module.exports = {
     '@babel/transform-typescript',
     '@loadable/babel-plugin',
     'babel-plugin-macros',
+    'babel-plugin-css-modules-transform',
   ],
   presets: [
     ['@babel/preset-env', { targets: { node: 'current' } }],

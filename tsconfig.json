@@ -19,7 +19,15 @@
     "types": ["@types/node", "@types/jest"],
     "paths": {
       "react": ["./node_modules/@types/react"]
-    }
+    },
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules",
+        "options": {
+          "customMatcher": "\\.module\\.css$"
+        }
+      }
+    ]
   },
   "exclude": ["node_modules"]
 }

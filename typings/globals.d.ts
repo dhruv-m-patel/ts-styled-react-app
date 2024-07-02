@@ -13,3 +13,8 @@ declare module 'shortstop-regex' {
   function shortStopRegex();
   export = shortStopRegex;
 }
+
+declare module '*.module.css' {
+  const classes: { [key: string]: string };
+  export default classes;
+}
