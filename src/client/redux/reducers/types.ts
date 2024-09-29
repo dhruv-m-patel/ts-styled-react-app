@@ -8,3 +8,8 @@ export interface TestReducerStateType {
   error?: string;
   data?: Array<string>;
 }
+
+export interface ConfigReducerStateType {
+  env: string;
+  title: string;
+}
