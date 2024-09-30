@@ -76,7 +76,6 @@
     "@storybook/cli": "7.6.19",
     "@storybook/react": "7.6.19",
     "@storybook/react-webpack5": "7.6.19",
-    "@storybook/testing-react": "7.6.19",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@types/confit": "^2.0.3",
