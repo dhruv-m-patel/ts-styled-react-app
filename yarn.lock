@@ -7065,6 +7065,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@welldone-software/why-did-you-render@npm:^8.0.3":
+  version: 8.0.3
+  resolution: "@welldone-software/why-did-you-render@npm:8.0.3"
+  dependencies:
+    lodash: ^4
+  peerDependencies:
+    react: ^18
+  checksum: 89840392f56877f3f5bf98b04037486b9d76467edb59110085076e4409c46a51485ca3c83d81c5b620fc4a535b4c5abe6568279a86872098bb2ae4f2b427123b
+  languageName: node
+  linkType: hard
+
 "@xtuc/ieee754@npm:^1.2.0":
   version: 1.2.0
   resolution: "@xtuc/ieee754@npm:1.2.0"
@@ -14387,7 +14398,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:4.x, lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.17.20, lodash@npm:^4.17.21, lodash@npm:^4.7.0":
+"lodash@npm:4.x, lodash@npm:^4, lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.17.20, lodash@npm:^4.17.21, lodash@npm:^4.7.0":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
@@ -19914,6 +19925,7 @@ __metadata:
     "@types/react-router-dom": ^5.3.3
     "@types/redux-api-middleware": ^3.2.6
     "@types/store": ^2.0.5
+    "@welldone-software/why-did-you-render": ^8.0.3
     babel-loader: ^8.3.0
     babel-plugin-macros: ^3.1.0
     bluebird: ^3.7.2
