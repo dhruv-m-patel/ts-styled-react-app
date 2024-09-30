@@ -1,19 +1,19 @@
 import { connect, ConnectedProps } from 'react-redux';
 import ReduxExample from './ReduxExample';
-import { fetchTestData } from '../../../client/redux/actions';
-import { TestReducerStateType } from '../../../client/redux/reducers/types';
+import { fetchExampleData } from '../../../client/redux/actions';
+import { ExampleReducerStateType } from '../../../client/redux/reducers/example';
 
-function mapStateToProps({ test }: { test: TestReducerStateType }) {
+function mapStateToProps({ example }: { example: ExampleReducerStateType }) {
   return {
-    isFetching: test.isFetching,
-    error: test.error,
-    data: test.data,
+    isFetching: example.isFetching,
+    error: example.error,
+    data: example.data,
   };
 }
 
 function mapDispatchToProps(dispatch: Function) {
   return {
-    fetchTestData: () => dispatch(fetchTestData()),
+    fetchExampleData: () => dispatch(fetchExampleData()),
   };
 }
 

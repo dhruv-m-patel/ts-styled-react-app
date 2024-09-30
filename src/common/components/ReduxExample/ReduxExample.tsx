@@ -8,13 +8,13 @@ export default function ReduxExample({
   isFetching,
   error,
   data,
-  fetchTestData,
+  fetchExampleData,
 }: ConnectedComponentProps & {}) {
   useEffect(() => {
     if (!isFetching && !error && (!data || !data.length)) {
-      fetchTestData();
+      fetchExampleData();
     }
-  }, [isFetching, error, data, fetchTestData]);
+  }, [isFetching, error, data, fetchExampleData]);
 
   return (
     <Page>

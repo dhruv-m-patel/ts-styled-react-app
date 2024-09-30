@@ -10,7 +10,7 @@ describe('ReduxExample', () => {
         <ReduxExample
           isFetching
           data={[]}
-          fetchTestData={() => {}}
+          fetchExampleData={() => {}}
           error={undefined}
         />
       </MemoryRouter>
@@ -23,7 +23,7 @@ describe('ReduxExample', () => {
       <MemoryRouter>
         <ReduxExample
           isFetching
-          fetchTestData={() => {}}
+          fetchExampleData={() => {}}
           error={undefined}
           data={['John Doe', 'Jane Doe', 'Foo Bar', 'Bar Baz', 'Foo Baz']}
         />
@@ -39,7 +39,7 @@ describe('ReduxExample', () => {
         <ReduxExample
           isFetching
           data={[]}
-          fetchTestData={() => {}}
+          fetchExampleData={() => {}}
           error="There was an error, please try later."
         />
       </MemoryRouter>
