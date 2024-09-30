@@ -3,6 +3,7 @@ import store from 'store';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import Navbar from '../Navbar';
 import PageContext from '../../context/PageContext';
+import ThemeProvider from '../ThemeProvider';
 
 const DEFAULT_HELMET_TITLE = 'styled-react-app';
 const DEFAULT_HELMET_DESCRIPTION =
@@ -54,22 +55,13 @@ export default function Page({
           <title>{title}</title>
           <meta name="description" content={description} />
         </Helmet>
-        <div
-          style={{
-            backgroundColor: hasSwitchedToDarkMode ? '#333' : '#fff',
-            color: hasSwitchedToDarkMode ? '#fff' : '#333',
-            fontFamily: 'Arial, sans-serif',
-            fontSize: '16px',
-            margin: 0,
-            padding: 0,
-          }}
-        >
+        <ThemeProvider theme={hasSwitchedToDarkMode ? 'dark' : 'light'}>
           <Navbar
             onDarkModeTriggerClick={switchToDarkMode}
             hasSwitchedToDarkMode={hasSwitchedToDarkMode}
           />
           <div style={{ margin: '1rem', padding: '10px' }}>{children}</div>
-        </div>
+        </ThemeProvider>
       </HelmetProvider>
     </PageContext.Provider>
   );

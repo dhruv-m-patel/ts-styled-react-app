@@ -6,7 +6,7 @@
     "jsx": "react",
     "declaration": true,
     "outDir": "./build",
-    "rootDir": "./src",
+    "rootDirs": ["./src", "./.storybook"],
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,

@@ -1,10 +1,12 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
-import InternalServerError from './InternalServerError';
+import { composeStories } from '@storybook/react';
+import * as stories from './InternalServerError.stories';
+
+const { WithDefaults } = composeStories(stories);
 
 describe('InternalServerError', () => {
   test('it should render', () => {
-    render(<InternalServerError />);
+    render(WithDefaults());
 
     expect(screen.queryByRole('heading', { level: 2 })).toHaveTextContent(
       'Oops!'
