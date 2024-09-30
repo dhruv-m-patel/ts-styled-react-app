@@ -90,6 +90,7 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/redux-api-middleware": "^3.2.6",
     "@types/store": "^2.0.5",
+    "@welldone-software/why-did-you-render": "^8.0.3",
     "babel-loader": "^8.3.0",
     "babel-plugin-macros": "^3.1.0",
     "eslint": "^8.57.0",
