@@ -1,33 +1,39 @@
-import { TypeAndPayload, TestReducerStateType } from './types';
+import { TypeAndPayload } from './types';
 import { Actions } from '../actions';
 
-export const defaultState: TestReducerStateType = {
+export interface ExampleReducerStateType {
+  isFetching: boolean;
+  error?: string;
+  data?: Array<string>;
+}
+
+export const defaultState: ExampleReducerStateType = {
   isFetching: false,
   error: undefined,
   data: [],
 };
 
-export default function testReducer(
-  state: TestReducerStateType = defaultState,
+export default function exampleReducer(
+  state: ExampleReducerStateType = defaultState,
   action: TypeAndPayload<Array<string>> = { type: undefined }
 ) {
   const { payload } = action;
   switch (action.type) {
-    case Actions.Test.FetchDataPending:
+    case Actions.Example.FetchDataPending:
       return {
         ...state,
         isFetching: true,
         error: undefined,
       };
 
-    case Actions.Test.FetchDataCompleted:
+    case Actions.Example.FetchDataCompleted:
       return {
         ...state,
         isFetching: false,
         data: payload,
       };
 
-    case Actions.Test.FetchDataFailed:
+    case Actions.Example.FetchDataFailed:
       return {
         ...state,
         isFetching: false,

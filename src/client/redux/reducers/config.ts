@@ -1,4 +1,7 @@
-import { ConfigReducerStateType } from './types';
+export interface ConfigReducerStateType {
+  env: string;
+  title: string;
+}
 
 export const defaultState: ConfigReducerStateType = {
   env: 'development',
