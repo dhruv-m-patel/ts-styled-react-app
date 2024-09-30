@@ -1,6 +1,6 @@
 import React, { MouseEvent } from 'react';
 
-interface NavbarComponentProps {
+export interface NavbarComponentProps {
   hasSwitchedToDarkMode: boolean;
   onDarkModeTriggerClick: (event: MouseEvent<HTMLElement>) => void;
 }
