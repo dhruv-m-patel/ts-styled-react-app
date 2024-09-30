@@ -11,7 +11,7 @@ export default async function AboutPage(router: Router) {
     async (req: WebRequest, res: Response, next: NextFunction) => {
       (req as StatefulWebRequest).initialState = {
         ...((req as StatefulWebRequest).initialState as JSONObject),
-        test: {
+        example: {
           data: getTestData(),
         },
       };
